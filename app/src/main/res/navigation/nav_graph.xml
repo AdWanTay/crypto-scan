@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/coinsListFragment">
+
+    <fragment
+        android:id="@+id/coinsListFragment"
+        android:name="com.advancedsolutionsdevelopers.cryptomonitor.presentation.coinslist.CoinsListFragment"
+        android:label="fragment_coins_list"
+        tools:layout="@layout/fragment_coins_list" >
+        <action
+            android:id="@+id/action_coinsListFragment_to_coinDetailsFragment"
+            app:destination="@id/coinDetailsFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom"/>
+        <action
+            android:id="@+id/action_coinsListFragment_to_splashFragment"
+            app:destination="@id/splashFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"  />
+        <action
+            android:id="@+id/action_coinsListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"  />
+    </fragment>
+    <fragment
+        android:id="@+id/coinDetailsFragment"
+        android:name="com.advancedsolutionsdevelopers.cryptomonitor.presentation.coindetails.CoinDetailsFragment"
+        android:label="fragment_coin_details"
+        tools:layout="@layout/fragment_coin_details" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.advancedsolutionsdevelopers.cryptomonitor.presentation.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.advancedsolutionsdevelopers.cryptomonitor.presentation.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

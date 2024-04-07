@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Crypto Monitor</string>
+    <string name="text_greeting">Привет!</string>
+    <string name="text_select_currency">Выбери, пожалуйста, валюту, которая тебе нравится:</string>
+    <string name="text_enable_notifications">И не забудь про уведомления,\nчтобы не пропустить нужную цену:</string>
+    <string name="text_button_enable_notifications">Разрешить уведомления</string>
+    <string name="text_next">Вперёд!</string>
+    <string name="text_drop_settings">Сбросить настройки</string>
+    <string name="text_selected_currency">Выбранная валюта:</string>
+    <string name="text_save">Сохранить</string>
+    <string name="text_delete">Удалить</string>
+    <string name="text_cancel">Отмена</string>
+    <string name="text_target_price">Целевая цена</string>
+    <string name="text_price_reached">Цена достигнута!</string>
+    <string name="text_current_price">Текущая цена: %1$s: %2$s%3$s</string>
+</resources>

@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.CryptoMonitor" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/base_gray_lighter</item>
+        <item name="colorPrimaryVariant">@color/base_gray_darker</item>
+        <item name="colorOnPrimary">@color/base_gray</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/base_yellow</item>
+        <item name="colorSecondaryVariant">@color/base_milky</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/base_gray_darker</item>
+        <item name="android:windowBackground">@color/base_gray</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="AlertDialogCustom" parent="Theme.MaterialComponents">
+        <item name="android:textColor">@color/base_milky</item>
+        <item name="colorPrimary">@color/base_milky</item>
+    </style>
+</resources>
