@@ -6,6 +6,7 @@ import com.advancedsolutionsdevelopers.cryptomonitor.core.di.IViewModelFactory
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Coin
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.CoinItem
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Currency
+import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Market
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.PriceTrend
 import com.advancedsolutionsdevelopers.cryptomonitor.domain.repository.NotificationsRepository
 import com.advancedsolutionsdevelopers.cryptomonitor.domain.repository.QuotesRepository
@@ -40,7 +41,7 @@ class CoinsListViewModel @AssistedInject constructor(
             val coinsList = mutableListOf<CoinListItem>()
             val notificationsMap = notificationsRepository.stateFlow.value.notifications
             for (i in Coin.entries) {
-                coinsList.add(CoinItem(i, 0.0).stub(settings.currency, notificationsMap))
+                coinsList.add(CoinItem(i, 0.0, Market.BINANCE).stub(settings.currency, notificationsMap))
             }
             reduce {
                 CoinsListState.Data(coinsList = coinsList)
@@ -104,6 +105,7 @@ class CoinsListViewModel @AssistedInject constructor(
                     newQuote.type,
                     oldState.copy(
                         currency = currency,
+                        coinMarket = newQuote.market,
                         areNotificationsEnabled = newQuote.type in notifications.keys,
                         price = newQuote.price,
                         priceTrend = oldState.price?.let { oldPrice -> calcTrend(oldPrice, newQuote.price) } ?: PriceTrend.STRAIGHT,
@@ -136,6 +138,7 @@ class CoinsListViewModel @AssistedInject constructor(
         return CoinListItem(
             coinType = type,
             coinLogo = type.toIconRes(),
+            coinMarket = market,
             price = price,
             priceTrend = PriceTrend.STRAIGHT,
             currency = currency,
@@ -149,6 +152,7 @@ class CoinsListViewModel @AssistedInject constructor(
         return CoinListItem(
             coinType = type,
             coinLogo = type.toIconRes(),
+            coinMarket = market,
             price = null,
             priceTrend = PriceTrend.STRAIGHT,
             currency = currency,

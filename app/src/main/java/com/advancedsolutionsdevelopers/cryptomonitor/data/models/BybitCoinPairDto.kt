@@ -1,9 +1,10 @@
 package com.advancedsolutionsdevelopers.cryptomonitor.data.models
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CoinPairDto(
+data class BybitCoinPairDto (
     val symbol: String,
-    val price: String
+    @SerialName("indexPrice") val price: String
 )

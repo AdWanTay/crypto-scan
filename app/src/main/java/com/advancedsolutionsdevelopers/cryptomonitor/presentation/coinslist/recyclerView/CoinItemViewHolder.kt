@@ -17,6 +17,7 @@ class CoinItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         coinIconImageView.setImageResource(item.coinLogo)
         coinNameTextView.text = item.coinName()
         coinPriceTextView.text = (item.price?.format() ?: "- ") + item.currency.symbol
+        marketTextView.text = if (item.price?.format().isNullOrBlank()) "" else item.coinMarket.name
         coinPriceTextView.setTextColorByTrend(item.priceTrend)
         root.isClickable = true
         root.setOnClickListener { item.onItemClickCallback() }
