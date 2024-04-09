@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 data class BybitResponseDto(
     val result: BybitResultDto,
 )
+
 @Serializable
 data class BybitResultDto(
     val list: List<BybitCoinPairDto>

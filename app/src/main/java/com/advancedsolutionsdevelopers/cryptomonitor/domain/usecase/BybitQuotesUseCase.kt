@@ -1,6 +1,5 @@
 package com.advancedsolutionsdevelopers.cryptomonitor.domain.usecase
 
-import android.util.Log
 import com.advancedsolutionsdevelopers.cryptomonitor.core.coroutines.CoroutineDispatchers
 import com.advancedsolutionsdevelopers.cryptomonitor.core.usecase.BackendUseCase
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.BybitCoinPairDto
@@ -41,7 +40,6 @@ class BybitQuotesUseCase @Inject constructor(
         }
         val result = mutableListOf<CoinItem>()
         for (i in response) {
-            Log.d("BybitQuotesUseCase", result.toString())
             if (i.symbol in concatenations) {
                 result.add(
                     CoinItem(

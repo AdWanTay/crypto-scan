@@ -1,6 +1,5 @@
 package com.advancedsolutionsdevelopers.cryptomonitor.core.usecase
 
-import android.util.Log
 import com.advancedsolutionsdevelopers.cryptomonitor.core.coroutines.CoroutineDispatchers
 
 public abstract class BackendUseCase<TParams, TRequest, TResponse, TResult>(

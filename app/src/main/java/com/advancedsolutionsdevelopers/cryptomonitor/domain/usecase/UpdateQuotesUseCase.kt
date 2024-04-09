@@ -1,6 +1,5 @@
 package com.advancedsolutionsdevelopers.cryptomonitor.domain.usecase
 
-import android.util.Log
 import com.advancedsolutionsdevelopers.cryptomonitor.core.coroutines.CoroutineDispatchers
 import com.advancedsolutionsdevelopers.cryptomonitor.core.usecase.UseCase
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Coin
@@ -11,7 +10,6 @@ import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Market.BYBIT
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Market.HUOBI
 import com.advancedsolutionsdevelopers.cryptomonitor.domain.repository.QuotesRepository
 import javax.inject.Inject
-import kotlin.math.min
 
 class UpdateQuotesUseCase @Inject constructor(
     coroutineDispatchers: CoroutineDispatchers,
@@ -21,12 +19,11 @@ class UpdateQuotesUseCase @Inject constructor(
     private val huobiQuotesUseCase: HuobiQuotesUseCase
 
 ) : UseCase<Unit, List<CoinItem>>(coroutineDispatchers.io) {
-
     override suspend fun run(params: Unit): List<CoinItem> {
         val bybitQuotes = bybitQuotesUseCase.run(params)
         val binanceQuotes = binanceQuotesUseCase.run(params)
         val huobiQuotes = huobiQuotesUseCase.run(params)
-        quotesRepository.reduce {//todo
+        quotesRepository.reduce {
             findMinPrice(
                 binanceQuotes.getOrDefault(listOf()),
                 bybitQuotes.getOrDefault(listOf()),
@@ -48,26 +45,21 @@ class UpdateQuotesUseCase @Inject constructor(
         }
         for (i in bybitQuotes) {
             if (i.type in coinsMinPrices.keys) {
-                if(i.price < coinsMinPrices[i.type]!!.first)
+                if (i.price < coinsMinPrices[i.type]!!.first)
                     coinsMinPrices[i.type] = Pair(i.price, BYBIT)
-             } else {
+            } else {
                 coinsMinPrices[i.type] = Pair(i.price, BYBIT)
             }
         }
-         for (i in huobiQuotes) {
+        for (i in huobiQuotes) {
             if (i.type in coinsMinPrices.keys) {
-                if(i.price < coinsMinPrices[i.type]!!.first)
+                if (i.price < coinsMinPrices[i.type]!!.first)
                     coinsMinPrices[i.type] = Pair(i.price, HUOBI)
             } else {
                 coinsMinPrices[i.type] = Pair(i.price, HUOBI)
             }
         }
-        Log.d("UpdateQuotesUseCase", coinsMinPrices.map { coinWithPrice ->
-            CoinItem(
-                coinWithPrice.key,
-                coinWithPrice.value.first,
-                coinWithPrice.value.second
-            )}.toString())
+
         return coinsMinPrices.map { coinWithPrice ->
             CoinItem(
                 coinWithPrice.key,
