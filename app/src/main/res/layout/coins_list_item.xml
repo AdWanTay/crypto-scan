@@ -73,8 +73,7 @@
         android:layout_height="wrap_content"
         android:text="Binance"
         android:textColor="@color/gray"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/coin_price_text_view"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
