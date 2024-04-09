@@ -11,6 +11,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import dagger.Module
 import dagger.Provides
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -22,17 +23,17 @@ interface NetworkModule {
         @Provides
         @ApplicationScope
         @Binance
-        fun provideBinanceApiUrl(): String = "https://api.binance.com"//TODO
+        fun provideBinanceApiUrl(): String = "https://api.binance.com"
 
         @Provides
         @ApplicationScope
         @Bybit
-        fun provideBybitApiUrl(): String = "https://ya.ru"//TODO
+        fun provideBybitApiUrl(): String = "https://api-testnet.bybit.com"
 
         @Provides
         @ApplicationScope
         @Huobi
-        fun provideHuobiApiUrl(): String = "https://ya.ru"//TODO
+        fun provideHuobiApiUrl(): String = "https://api.huobi.pro"
 
         @Provides
         @ApplicationScope
@@ -58,9 +59,12 @@ interface NetworkModule {
         fun provideBybitRetrofit(
             @Bybit url: String,
             client: OkHttpClient
-        ): Retrofit = Retrofit.Builder().baseUrl(url).client(client)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-            .build()
+        ): Retrofit = Retrofit.Builder().apply {
+            baseUrl(url)
+            client(client)
+            val json = Json { ignoreUnknownKeys = true }
+            addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        }.build()
 
         @Provides
         @ApplicationScope
@@ -68,9 +72,12 @@ interface NetworkModule {
         fun provideHuobiRetrofit(
             @Huobi url: String,
             client: OkHttpClient
-        ): Retrofit = Retrofit.Builder().baseUrl(url).client(client)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-            .build()
+        ): Retrofit =  Retrofit.Builder().apply {
+            baseUrl(url)
+            client(client)
+            val json = Json { ignoreUnknownKeys = true }
+            addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        }.build()
 
 
         @Provides

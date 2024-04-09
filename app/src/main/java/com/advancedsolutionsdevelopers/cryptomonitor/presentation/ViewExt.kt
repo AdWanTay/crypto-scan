@@ -14,7 +14,7 @@ fun Coin.toIconRes(): Int {
         Coin.XMR -> R.drawable.ic_xmr
         Coin.DASH -> R.drawable.ic_dash
         Coin.ZEC -> R.drawable.ic_zec
-        Coin.VTC -> R.drawable.ic_vtc
+        Coin.CHZ -> R.drawable.ic_chz
         Coin.DOGE -> R.drawable.ic_doge
         Coin.DGB -> R.drawable.ic_dgb
         Coin.SOL -> R.drawable.ic_sol
@@ -43,7 +43,7 @@ fun Coin.coinName(): String {
         Coin.XMR -> "Monero"
         Coin.DASH -> "Dash"
         Coin.ZEC -> "Zcash"
-        Coin.VTC -> "Vertcoin"
+        Coin.CHZ -> "Chiliz"
         Coin.DOGE -> "Dogecoin"
         Coin.DGB -> "Digibyte"
         Coin.SOL -> "Solana"
@@ -57,5 +57,5 @@ fun Coin.coinName(): String {
 
 fun Double.format(digits: Int = 8): String {
     val leading = toString().substringBefore(".").length
-    return "%.${max(digits - leading, 2)}f".format(this)
+    return "%.${max(digits - leading, 2)}f".format(this).trimEnd('0').trimEnd('.')
 }

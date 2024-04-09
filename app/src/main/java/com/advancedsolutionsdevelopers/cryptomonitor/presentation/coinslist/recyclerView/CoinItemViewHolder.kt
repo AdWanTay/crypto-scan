@@ -2,7 +2,9 @@ package com.advancedsolutionsdevelopers.cryptomonitor.presentation.coinslist.rec
 
 import android.annotation.SuppressLint
 import android.view.View
+import android.view.View.GONE
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.advancedsolutionsdevelopers.cryptomonitor.R
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.PriceTrend
@@ -17,6 +19,12 @@ class CoinItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         coinIconImageView.setImageResource(item.coinLogo)
         coinNameTextView.text = item.coinName()
         coinPriceTextView.text = (item.price?.format() ?: "- ") + item.currency.symbol
+        if (item.price?.format().isNullOrBlank())
+            marketTextView.text = ""
+        else
+            marketTextView.text = item.coinMarket.name
+
+        marketTextView.text = item.coinMarket.name
         coinPriceTextView.setTextColorByTrend(item.priceTrend)
         root.isClickable = true
         root.setOnClickListener { item.onItemClickCallback() }

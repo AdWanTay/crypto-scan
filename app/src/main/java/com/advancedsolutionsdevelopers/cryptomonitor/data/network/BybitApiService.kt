@@ -1,11 +1,11 @@
 package com.advancedsolutionsdevelopers.cryptomonitor.data.network
 
+import com.advancedsolutionsdevelopers.cryptomonitor.data.models.BybitResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
 
 //интерфейс работы с сервером Bybit
 interface BybitApiService {
-
-    @GET("list")//TODO
-    suspend fun getCoinsList(): Response<Unit>
+    @GET("/v5/market/tickers?category=linear")
+    suspend fun getCoinsPrices(): Response<BybitResponseDto>
 }

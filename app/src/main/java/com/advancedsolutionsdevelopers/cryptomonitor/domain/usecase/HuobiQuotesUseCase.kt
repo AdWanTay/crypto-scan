@@ -5,33 +5,32 @@ import com.advancedsolutionsdevelopers.cryptomonitor.core.coroutines.CoroutineDi
 import com.advancedsolutionsdevelopers.cryptomonitor.core.usecase.BackendUseCase
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Coin
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.CoinItem
-import com.advancedsolutionsdevelopers.cryptomonitor.data.models.BinanceCoinPairDto
+import com.advancedsolutionsdevelopers.cryptomonitor.data.models.HuobiCoinPairDto
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Market
-import com.advancedsolutionsdevelopers.cryptomonitor.data.network.BinanceApiService
 import com.advancedsolutionsdevelopers.cryptomonitor.data.network.EmptyBodyException
+import com.advancedsolutionsdevelopers.cryptomonitor.data.network.HuobiApiService
 import com.advancedsolutionsdevelopers.cryptomonitor.domain.cache.SettingsCache
 import javax.inject.Inject
 
-class BinanceQuotesUseCase @Inject constructor(
+class HuobiQuotesUseCase @Inject constructor(
     coroutineDispatchers: CoroutineDispatchers,
-    private val api: BinanceApiService,
+    private val api: HuobiApiService,
     private val settingsCache: SettingsCache
 ) :
-    BackendUseCase<Unit, Unit, List<BinanceCoinPairDto>, List<CoinItem>>(coroutineDispatchers) {
+    BackendUseCase<Unit, Unit, List<HuobiCoinPairDto>, List<CoinItem>>(coroutineDispatchers) {
+    override fun transformRequest(params: Unit) {
+    }
 
-    override fun transformRequest(params: Unit) {}
-
-    override suspend fun performRequest(request: Unit): Result<List<BinanceCoinPairDto>> {
+    override suspend fun performRequest(request: Unit): Result<List<HuobiCoinPairDto>> {
         val body = api.getCoinsPrices().body()
-        Log.d("BinanceQuotesUseCase", body.toString())
         return if (body == null) {
             Result.failure(EmptyBodyException)
         } else {
-            Result.success(body)
+            Result.success(body.data)
         }
     }
 
-    override fun transformResponse(response: List<BinanceCoinPairDto>): List<CoinItem> {
+    override fun transformResponse(response: List<HuobiCoinPairDto>): List<CoinItem> {
         val currencyName = settingsCache.get().currency.marketName
         val coinNames = Coin.entries.toTypedArray().map { coin -> coin.name }
         val concatenations = mutableSetOf<String>()
@@ -41,20 +40,20 @@ class BinanceQuotesUseCase @Inject constructor(
         }
         val result = mutableListOf<CoinItem>()
         for (i in response) {
-            if (i.symbol in concatenations) {
+            if (i.symbol.uppercase() in concatenations) {
+                Log.d("HuobiQuotesUseCase",i.price.toDouble().toString())
                 result.add(
                     CoinItem(
-                        type = Coin.valueOf(i.symbol.dropCurrency(currencyName)),
+                        type = Coin.valueOf(i.symbol.uppercase().dropCurrency(currencyName)),
                         price = i.price.toDouble(),
-                        market = Market.BINANCE
-
+                        market = Market.HUOBI
                     )
                 )
             }
         }
+        Log.d("HuobiQuotesUseCase", result.toString())
         return result
     }
-
     private fun String.dropCurrency(currencyName: String): String {
         return replace(currencyName, "")
     }

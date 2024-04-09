@@ -19,6 +19,6 @@ enum class Coin {
     MATIC,
     ETC,
     USDT,
-    VTC,
+    CHZ,
     BCH
 }
