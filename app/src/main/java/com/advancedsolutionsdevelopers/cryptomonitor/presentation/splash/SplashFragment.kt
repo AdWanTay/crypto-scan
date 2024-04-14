@@ -12,12 +12,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.advancedsolutionsdevelopers.cryptomonitor.R
 import com.advancedsolutionsdevelopers.cryptomonitor.core.BaseFragment
 import com.advancedsolutionsdevelopers.cryptomonitor.core.lazyViewModel
+import com.advancedsolutionsdevelopers.cryptomonitor.core.viewBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Currency
+import com.advancedsolutionsdevelopers.cryptomonitor.databinding.FragmentCoinsListBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.databinding.FragmentSplashBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity.MainActivity
 
-class SplashFragment : BaseFragment<SplashState, SplashEvent>() {
-    override val binding by lazy { FragmentSplashBinding.inflate(layoutInflater) }
+class SplashFragment : BaseFragment<SplashState, SplashEvent>(R.layout.fragment_splash) {
+    override val binding by viewBinding(FragmentSplashBinding::bind)
     private lateinit var arl: ActivityResultLauncher<String>
     override val viewModel by lazyViewModel {
         (requireActivity() as MainActivity).activityComponent.splashViewModelFactory.create()
@@ -72,10 +74,19 @@ class SplashFragment : BaseFragment<SplashState, SplashEvent>() {
     }
 
     private fun initSpinner() {
-        val langAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, Currency.entries.toTypedArray())
+        val langAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            Currency.entries.toTypedArray()
+        )
         binding.currencySpinner.adapter = langAdapter
         binding.currencySpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 sendEvent(SplashEvent.CurrencySelected(Currency.entries[position]))
             }
 
@@ -91,8 +102,10 @@ class SplashFragment : BaseFragment<SplashState, SplashEvent>() {
             NotificationsButtonState.GRANTED -> "✅"
             NotificationsButtonState.DENIED -> "⛔️"
         }
-        binding.enableNotificationsButton.text = "$notificationTextAdding ${getString(R.string.text_button_enable_notifications)} $notificationTextAdding"
+        binding.enableNotificationsButton.text =
+            "$notificationTextAdding ${getString(R.string.text_button_enable_notifications)} $notificationTextAdding"
 
-        binding.enableNotificationsButton.isEnabled = state.notificationsButtonState == NotificationsButtonState.INITIAL
+        binding.enableNotificationsButton.isEnabled =
+            state.notificationsButtonState == NotificationsButtonState.INITIAL
     }
 }

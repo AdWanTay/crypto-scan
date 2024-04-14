@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.advancedsolutionsdevelopers.cryptomonitor.R
 import com.advancedsolutionsdevelopers.cryptomonitor.core.BaseFragment
 import com.advancedsolutionsdevelopers.cryptomonitor.core.lazyViewModel
+import com.advancedsolutionsdevelopers.cryptomonitor.core.viewBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Currency
+import com.advancedsolutionsdevelopers.cryptomonitor.databinding.FragmentCoinsListBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.databinding.FragmentSettingsBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity.MainActivity
 
-class SettingsFragment : BaseFragment<SettingsState, SettingsEvent>() {
-    override val binding by lazy {
-        FragmentSettingsBinding.inflate(layoutInflater)
-    }
+class SettingsFragment : BaseFragment<SettingsState, SettingsEvent>(R.layout.fragment_settings) {
+    override val binding by viewBinding(FragmentSettingsBinding::bind)
     override val viewModel by lazyViewModel {
         (requireActivity() as MainActivity).activityComponent.settingsViewModelFactory.create()
     }
