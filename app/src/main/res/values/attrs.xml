@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom parameters for GradientIndicator -->
+    <declare-styleable name="GradientIndicator">
+        <attr name="leftColor" format="color"/>
+        <attr name="rightColor" format="color"/>
+        <attr name="minVal" format="string"/>
+        <attr name="maxVal" format="string"/>
+        <attr name="currentVal" format="string"/>
+    </declare-styleable>
+</resources>
