@@ -69,6 +69,7 @@ dependencies {
 
     val implementation by configurations
     implementation(libs.dagger)
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
     val kapt by configurations
     kapt(libs.dagger.compiler)

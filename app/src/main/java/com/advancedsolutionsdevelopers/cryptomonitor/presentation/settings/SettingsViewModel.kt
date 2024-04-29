@@ -18,7 +18,7 @@ class SettingsViewModel @AssistedInject constructor(
     private val settingsRepository: SettingsRepository,
     private val notificationsRepository: NotificationsRepository,
     private val navigationChannel: NavigationChannel
-) : BaseViewModel<SettingsState, SettingsEvent>(storeConfig, initialState = SettingsState(Currency.RUB)) {
+) : BaseViewModel<SettingsState, SettingsEvent>(storeConfig, initialState = SettingsState(Currency.RUB, 2.0)) {
 
     init {
         initViewModel()
@@ -26,6 +26,7 @@ class SettingsViewModel @AssistedInject constructor(
 
     private fun initViewModel() {
         updateSelectedCurrency()
+        updateSelectedTimeInterval()
     }
 
     private fun updateSelectedCurrency() = intent {
@@ -36,9 +37,18 @@ class SettingsViewModel @AssistedInject constructor(
         }
     }
 
+    private fun updateSelectedTimeInterval() = intent {
+        reduce { settingsState ->
+            settingsState.copy(
+                timeInterval = settingsRepository.stateFlow.value.timeInterval
+            )
+        }
+    }
+
     override fun handleEvent(event: SettingsEvent) {
         when (event) {
             is SettingsEvent.CurrencySelected -> handleCurrencySelection(event.selectedCurrency)
+            is SettingsEvent.TimeIntervalSelected -> handleTimeIntervalSelection(event.selectedTimeInterval)
             is SettingsEvent.OnBackClick -> handleBackClick()
             is SettingsEvent.OnResetClick -> handleReset()
         }
@@ -67,6 +77,17 @@ class SettingsViewModel @AssistedInject constructor(
             NotificationsData()
         }
     }
+
+    private fun handleTimeIntervalSelection(newTimeInterval: Double) = intent {
+        settingsRepository.reduce { oldState ->
+            oldState.copy(timeInterval = newTimeInterval)
+        }
+        notificationsRepository.reduce {
+            //Because we don't know what's price user want to achieve right now
+            NotificationsData()
+        }
+    }
+
 
     @AssistedFactory
     interface Factory : IViewModelFactory<SettingsViewModel>
