@@ -7,10 +7,17 @@
     <string name="text_next">Вперёд!</string>
     <string name="text_drop_settings">Сбросить настройки</string>
     <string name="text_selected_currency">Выбранная валюта:</string>
+    <string name="text_selected_time_interval">Время обновления:</string>
     <string name="text_save">Сохранить</string>
     <string name="text_delete">Удалить</string>
     <string name="text_cancel">Отмена</string>
     <string name="text_target_price">Целевая цена</string>
     <string name="text_price_reached">Цена достигнута!</string>
     <string name="text_current_price">Текущая цена: %1$s: %2$s%3$s</string>
+    <string name="text_volume">Объём торгов за 24 часа: </string>
+    <string name="text_min_price">Минимальная цена за 24 часа: </string>
+    <string name="text_max_price">Максимальная цена за 24 часа: </string>
+
+
+
 </resources>

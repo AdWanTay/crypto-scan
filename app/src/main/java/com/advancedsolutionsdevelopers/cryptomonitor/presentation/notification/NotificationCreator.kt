@@ -9,11 +9,11 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavDeepLinkBuilder
 import com.advancedsolutionsdevelopers.cryptomonitor.CONST.CHANNEL_ID
 import com.advancedsolutionsdevelopers.cryptomonitor.CONST.CHANNEL_NAME
+import com.advancedsolutionsdevelopers.cryptomonitor.CONST.COIN_TYPE_ARG
 import com.advancedsolutionsdevelopers.cryptomonitor.R
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Coin
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.CoinItem
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Currency
-import com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity.NavigationDestination.Companion.COIN_NAME_KEY
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.coinName
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.format
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.toIconRes
@@ -35,7 +35,7 @@ class NotificationCreator() {
 
     private fun buildNavigationIntent(context: Context, coin: Coin): PendingIntent =
         NavDeepLinkBuilder(context).setGraph(R.navigation.nav_graph)
-            .setDestination(R.id.coinDetailsFragment).setArguments(bundleOf(COIN_NAME_KEY to coin.name))
+            .setDestination(R.id.coinDetailsFragment).setArguments(bundleOf(COIN_TYPE_ARG to coin.name))
             .createPendingIntent()
 
     private fun buildNotification(

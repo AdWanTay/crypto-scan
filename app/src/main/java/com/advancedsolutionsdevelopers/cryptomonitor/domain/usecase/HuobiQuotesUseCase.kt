@@ -41,7 +41,7 @@ class HuobiQuotesUseCase @Inject constructor(
         val result = mutableListOf<CoinItem>()
         for (i in response) {
             if (i.symbol.uppercase() in concatenations) {
-                Log.d("HuobiQuotesUseCase",i.price.toDouble().toString())
+//                Log.d("HuobiQuotesUseCase",i.price.toDouble().toString())
                 result.add(
                     CoinItem(
                         type = Coin.valueOf(i.symbol.uppercase().dropCurrency(currencyName)),
@@ -51,7 +51,7 @@ class HuobiQuotesUseCase @Inject constructor(
                 )
             }
         }
-        Log.d("HuobiQuotesUseCase", result.toString())
+//        Log.d("HuobiQuotesUseCase", result.toString())
         return result
     }
     private fun String.dropCurrency(currencyName: String): String {

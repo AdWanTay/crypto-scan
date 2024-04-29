@@ -1,5 +1,6 @@
 package com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity
 
+import com.advancedsolutionsdevelopers.cryptomonitor.CONST.COIN_TYPE_ARG
 import com.advancedsolutionsdevelopers.cryptomonitor.R
 import com.advancedsolutionsdevelopers.cryptomonitor.core.di.ActivityScope
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Coin
@@ -28,9 +29,5 @@ public sealed interface NavigationDestination {
     object Splash : PathDestination(path = R.id.action_coinsListFragment_to_splashFragment)
     object Settings : PathDestination(path = R.id.action_coinsListFragment_to_settingsFragment)
     data class CoinDetails(val coin: Coin) :
-        PathDestination(path = R.id.action_coinsListFragment_to_coinDetailsFragment, args = mapOf(COIN_NAME_KEY to coin.name))
-
-    companion object {
-        const val COIN_NAME_KEY = "coin_name"
-    }
+        PathDestination(path = R.id.action_coinsListFragment_to_coinDetailsFragment, args = mapOf(COIN_TYPE_ARG to coin.name))
 }
