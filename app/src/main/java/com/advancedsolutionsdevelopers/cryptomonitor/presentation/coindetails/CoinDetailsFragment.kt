@@ -11,7 +11,9 @@ import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Coin
 import com.advancedsolutionsdevelopers.cryptomonitor.databinding.FragmentCoinDetailsBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity.MainActivity
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.format
+import com.advancedsolutionsdevelopers.cryptomonitor.presentation.getDescription
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.toIconRes
+import com.google.common.io.Resources
 
 class CoinDetailsFragment :
     BaseFragment<CoinDetailsState, CoinDetailsEvent>(R.layout.fragment_coin_details) {
@@ -24,6 +26,7 @@ class CoinDetailsFragment :
         super.onViewCreated(view, savedInstanceState)
         binding.backButton.setOnClickListener { sendEvent(CoinDetailsEvent.OnBackClick) }
         val coinName = arguments?.getString(CONST.COIN_TYPE_ARG)
+
         if (!coinName.isNullOrBlank()) {
             sendEvent(CoinDetailsEvent.OnArgsReceived(coinName))
         }
@@ -34,11 +37,17 @@ class CoinDetailsFragment :
         when (state) {
             is CoinDetailsState.Data -> {
                 with(binding){
+                    val min = state.minPrice
+                    val max = state.maxPrice
+                    val current = state.currentPrice
+                    indicator.init(min, max, current, resources.getColor(R.color.base_green, null), resources.getColor(R.color.base_red, null))
                     tvCoinName.text = state.coinName
-                    tvMaxPrice.text = " ${state.maxPrice.format()}$"
-                    tvMinPrice.text = " ${state.minPrice.format()}$"
+                    tvMaxPrice.text = " ${max.format()}$"
+                    tvMinPrice.text = " ${min.format()}$"
                     tvVolume.text = " ${state.volume.format()}$"
+                    tvCurrentPrice.text = " ${current.format()}$"
                     coinIconImage.setImageResource(Coin.valueOf(state.coinName).toIconRes())
+                    tvDescription.text = getString(Coin.valueOf(state.coinName).getDescription())
                 }
             }
             is CoinDetailsState.Initial -> Unit

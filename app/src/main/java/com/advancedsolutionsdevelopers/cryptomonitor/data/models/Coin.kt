@@ -22,3 +22,5 @@ enum class Coin {
     CHZ,
     BCH
 }
+
+

@@ -14,8 +14,8 @@ import com.advancedsolutionsdevelopers.cryptomonitor.R
 import com.advancedsolutionsdevelopers.cryptomonitor.core.viewBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Coin
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Currency
-import com.advancedsolutionsdevelopers.cryptomonitor.databinding.FragmentCoinsListBinding
 import com.advancedsolutionsdevelopers.cryptomonitor.databinding.NotificationDialogBinding
+
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity.DialogResult
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity.NotificationDialogResultListener
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.format

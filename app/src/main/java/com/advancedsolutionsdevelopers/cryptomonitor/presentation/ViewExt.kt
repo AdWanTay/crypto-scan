@@ -29,6 +29,30 @@ fun Coin.toIconRes(): Int {
     }
 }
 
+fun Coin.getDescription(): Int {
+    return when (this) {
+        Coin.USDT -> R.string.text_description_usdt
+        Coin.USDC -> R.string.text_description_usdc
+        Coin.BTC -> R.string.text_description_btc
+        Coin.ETH -> R.string.text_description_eth
+        Coin.LTC -> R.string.text_description_ltc
+        Coin.XMR -> R.string.text_description_xmr
+        Coin.DASH -> R.string.text_description_dash
+        Coin.ZEC -> R.string.text_description_zec
+        Coin.CHZ -> R.string.text_description_chz
+        Coin.DOGE -> R.string.text_description_doge
+        Coin.DGB -> R.string.text_description_dgb
+        Coin.SOL -> R.string.text_description_sol
+        Coin.XRP -> R.string.text_description_xrp
+        Coin.ADA -> R.string.text_description_ada
+        Coin.AAVE -> R.string.text_description_aave
+        Coin.DOT -> R.string.text_description_dot
+        Coin.TRX -> R.string.text_description_trx
+        Coin.MATIC -> R.string.text_description_matic
+        Coin.ETC -> R.string.text_description_etc
+        Coin.BCH -> R.string.text_description_bch
+    }
+}
 fun Coin.coinName(): String {
     return when (this) {
         Coin.USDT,
@@ -36,7 +60,6 @@ fun Coin.coinName(): String {
         Coin.AAVE,
         Coin.TRX,
         Coin.USDC -> name
-
         Coin.BTC -> "Bitcoin"
         Coin.ETH -> "Etherium"
         Coin.LTC -> "Litecoin"

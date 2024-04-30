@@ -30,7 +30,8 @@ class CoinDetailsViewModel @AssistedInject constructor(
                 coinName = coinName,
                 minPrice = 0.0,
                 maxPrice = 0.0,
-                volume = 0.0
+                volume = 0.0,
+                currentPrice = 0.0,
             )
         }
         val result = bybitQuotesUseCase.execute(Unit).getOrNull()
@@ -43,7 +44,8 @@ class CoinDetailsViewModel @AssistedInject constructor(
                                 oldState.copy(
                                     minPrice = coin.minPrice,
                                     maxPrice = coin.maxPrice,
-                                    volume = coin.volume
+                                    volume = coin.volume,
+                                    currentPrice = coin.price,
                                 )
                             }
 
@@ -51,7 +53,8 @@ class CoinDetailsViewModel @AssistedInject constructor(
                                 coinName = coinName,
                                 minPrice = coin.minPrice,
                                 maxPrice = coin.maxPrice,
-                                volume = coin.volume
+                                volume = coin.volume,
+                                currentPrice = coin.price
                             )
                         }
                     }

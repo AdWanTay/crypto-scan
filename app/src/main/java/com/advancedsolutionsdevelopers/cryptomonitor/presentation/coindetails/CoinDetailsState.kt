@@ -7,5 +7,5 @@ import com.advancedsolutionsdevelopers.cryptomonitor.presentation.coinslist.recy
 
 sealed interface CoinDetailsState {
     data object Initial: CoinDetailsState
-    data class Data(val coinName: String, val minPrice: Double, val maxPrice: Double, val volume: Double) : CoinDetailsState
+    data class Data(val coinName: String, val currentPrice: Double, val minPrice: Double, val maxPrice: Double, val volume: Double) : CoinDetailsState
 }
