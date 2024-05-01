@@ -16,7 +16,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -69,7 +68,6 @@ dependencies {
 
     val implementation by configurations
     implementation(libs.dagger)
-    implementation("androidx.appcompat:appcompat:1.6.1")
 
     val kapt by configurations
     kapt(libs.dagger.compiler)

@@ -9,4 +9,6 @@ object CONST {
     const val CHANNEL_NAME = "Coin App Notification"
 
     const val REQUEST_DELAY = 3000L
+
+    const val USDT_NAME = "USDT"
 }

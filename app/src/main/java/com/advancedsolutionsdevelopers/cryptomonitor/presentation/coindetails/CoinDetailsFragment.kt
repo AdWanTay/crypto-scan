@@ -40,7 +40,7 @@ class CoinDetailsFragment :
                     val min = state.minPrice
                     val max = state.maxPrice
                     val current = state.currentPrice
-                    indicator.init(min, max, current, resources.getColor(R.color.base_green, null), resources.getColor(R.color.base_red, null))
+                    indigcatorView.init(min, max, current, resources.getColor(R.color.base_green, null), resources.getColor(R.color.base_red, null))
                     tvCoinName.text = state.coinName
                     tvMaxPrice.text = " ${max.format()}$"
                     tvMinPrice.text = " ${min.format()}$"

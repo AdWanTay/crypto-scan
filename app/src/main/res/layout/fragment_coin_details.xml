@@ -7,15 +7,15 @@
     tools:context=".presentation.coindetails.CoinDetailsFragment">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/text_max_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/text_max_price"
         android:textColor="@color/base_milky"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/tv2"
-        app:layout_constraintTop_toBottomOf="@+id/tv2" />
+        app:layout_constraintStart_toStartOf="@+id/text_min_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_min_price" />
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -51,26 +51,26 @@
 
     <TextView
 
-        android:id="@+id/textView7"
+        android:id="@+id/text_volume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/text_volume"
         android:textColor="@color/base_milky"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/text_current_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_current_price" />
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/text_min_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/text_min_price"
         android:textColor="@color/base_milky"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="@+id/text_volume"
+        app:layout_constraintTop_toBottomOf="@+id/text_volume" />
 
     <TextView
 
@@ -80,8 +80,8 @@
         android:text=" 0.1"
         android:textColor="@color/base_milky"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv2"
-        app:layout_constraintStart_toEndOf="@+id/tv2" />
+        app:layout_constraintBottom_toBottomOf="@+id/text_min_price"
+        app:layout_constraintStart_toEndOf="@+id/text_min_price" />
 
     <TextView
 
@@ -96,7 +96,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/indicator" />
+        app:layout_constraintTop_toBottomOf="@+id/indigcator_view" />
 
     <TextView
         android:id="@+id/tv_max_price"
@@ -105,8 +105,8 @@
         android:text=" 0.1"
         android:textColor="@color/base_milky"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
+        app:layout_constraintBottom_toBottomOf="@+id/text_max_price"
+        app:layout_constraintStart_toEndOf="@+id/text_max_price" />
 
     <TextView
         android:id="@+id/tv_volume"
@@ -115,8 +115,8 @@
         android:text=" 0.1"
         android:textColor="@color/base_milky"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
+        app:layout_constraintStart_toEndOf="@+id/text_volume"
+        app:layout_constraintTop_toTopOf="@+id/text_volume" />
 
     <ImageView
         android:id="@+id/coin_icon_image"
@@ -129,7 +129,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_coin_name" />
 
     <com.advancedsolutionsdevelopers.cryptomonitor.core.ui.GradientIndicatorView
-        android:id="@+id/indicator"
+        android:id="@+id/indigcator_view"
         android:layout_width="match_parent"
         android:layout_height="20sp"
         android:layout_marginStart="16dp"
@@ -137,10 +137,10 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/text_max_price" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/text_current_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -157,8 +157,8 @@
         android:text=" 0.1"
         android:textColor="@color/base_milky"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/text_current_price"
+        app:layout_constraintStart_toEndOf="@+id/text_current_price" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

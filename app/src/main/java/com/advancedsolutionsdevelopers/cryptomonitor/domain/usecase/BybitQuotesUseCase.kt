@@ -1,6 +1,7 @@
 package com.advancedsolutionsdevelopers.cryptomonitor.domain.usecase
 
 import android.util.Log
+import com.advancedsolutionsdevelopers.cryptomonitor.CONST.USDT_NAME
 import com.advancedsolutionsdevelopers.cryptomonitor.core.coroutines.CoroutineDispatchers
 import com.advancedsolutionsdevelopers.cryptomonitor.core.usecase.BackendUseCase
 import com.advancedsolutionsdevelopers.cryptomonitor.data.models.BybitCoinPairDto
@@ -33,15 +34,14 @@ class BybitQuotesUseCase @Inject constructor(
     override fun transformResponse(response: List<BybitCoinPairDto>): List<CoinItem> {
         val currencyName = settingsCache.get().currency.marketName
         val coinNames = Coin.entries.toTypedArray().map { coin -> coin.name }
-        val USDTname = "USDT"
 
         val concatenationsUSDT = mutableSetOf<String>()
         val concatenations = mutableSetOf<String>()
         for (i in coinNames) {
             concatenations.add(currencyName + i)
             concatenations.add(i + currencyName)
-            concatenationsUSDT.add(USDTname + i)
-            concatenationsUSDT.add(i + USDTname)
+            concatenationsUSDT.add(USDT_NAME + i)
+            concatenationsUSDT.add(i + USDT_NAME)
         }
         val result = mutableListOf<CoinItem>()
         val resultUSDT = mutableListOf<CoinItem>()
@@ -62,7 +62,7 @@ class BybitQuotesUseCase @Inject constructor(
             if (i.symbol in concatenationsUSDT) {
                 resultUSDT.add(
                     CoinItem(
-                        type = Coin.valueOf(i.symbol.dropCurrency(USDTname)),
+                        type = Coin.valueOf(i.symbol.dropCurrency(USDT_NAME)),
                         price = i.price.toDouble(),
                         market = Market.BYBIT,
                         minPrice = i.minPrice.toDouble(),
@@ -72,8 +72,6 @@ class BybitQuotesUseCase @Inject constructor(
                 )
             }
         }
-//        Log.d("BybitQuotesUseCase", resultUSDT.toString())
-
         var f = false
         for (ur in resultUSDT) {
             f = false
@@ -97,7 +95,6 @@ class BybitQuotesUseCase @Inject constructor(
                 )
             }
         }
-        Log.d("BybitQuotesUseCase", result.toString())
         return result
     }
 
