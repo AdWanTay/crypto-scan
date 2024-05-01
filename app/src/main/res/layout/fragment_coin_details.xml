@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".presentation.coindetails.CoinDetailsFragment">
 
+    <TextView
+        android:id="@+id/text_max_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_max_price"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/text_min_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_min_price" />
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -24,5 +35,130 @@
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/ic_arrow_back" />
     </Toolbar>
+
+    <TextView
+        android:id="@+id/tv_coin_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:text="BTC"
+        android:textColor="@color/base_yellow"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+
+        android:id="@+id/text_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_volume"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/text_current_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_current_price" />
+
+    <TextView
+        android:id="@+id/text_min_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_min_price"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/text_volume"
+        app:layout_constraintTop_toBottomOf="@+id/text_volume" />
+
+    <TextView
+
+        android:id="@+id/tv_min_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 0.1"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_min_price"
+        app:layout_constraintStart_toEndOf="@+id/text_min_price" />
+
+    <TextView
+
+        android:id="@+id/tv_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="---"
+        android:textColor="@color/base_milky"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/indigcator_view" />
+
+    <TextView
+        android:id="@+id/tv_max_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 0.1"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_max_price"
+        app:layout_constraintStart_toEndOf="@+id/text_max_price" />
+
+    <TextView
+        android:id="@+id/tv_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 0.1"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/text_volume"
+        app:layout_constraintTop_toTopOf="@+id/text_volume" />
+
+    <ImageView
+        android:id="@+id/coin_icon_image"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_btc"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_coin_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_coin_name" />
+
+    <com.advancedsolutionsdevelopers.cryptomonitor.core.ui.GradientIndicatorView
+        android:id="@+id/indigcator_view"
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/text_max_price" />
+
+    <TextView
+        android:id="@+id/text_current_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_price"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_coin_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_coin_name" />
+
+    <TextView
+        android:id="@+id/tv_current_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 0.1"
+        android:textColor="@color/base_milky"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_current_price"
+        app:layout_constraintStart_toEndOf="@+id/text_current_price" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

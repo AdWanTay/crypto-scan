@@ -38,7 +38,6 @@ class UpdateQuotesUseCase @Inject constructor(
         bybitQuotes: List<CoinItem>,
         huobiQuotes: List<CoinItem>
     ): List<CoinItem> {
-
         val coinsMinPrices = mutableMapOf<Coin, Pair<Double, Market>>()
         for (i in binanceQuotes) {
             coinsMinPrices[i.type] = Pair(i.price, BINANCE)

@@ -5,5 +5,6 @@ import com.advancedsolutionsdevelopers.cryptomonitor.data.models.Currency
 public data class SettingsData(
     val isFirstLaunch: Boolean = true,
     val notificationsEnabled: Boolean = false,
-    val currency: Currency = Currency.RUB
+    val currency: Currency = Currency.RUB,
+    val timeInterval: Double = 1.0
 )
