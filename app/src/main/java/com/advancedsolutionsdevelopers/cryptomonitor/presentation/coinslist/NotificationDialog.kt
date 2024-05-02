@@ -22,7 +22,7 @@ import com.advancedsolutionsdevelopers.cryptomonitor.presentation.format
 
 
 class NotificationDialog : DialogFragment(R.layout.notification_dialog) {
-    private val binding by viewBinding(NotificationDialogBinding::bind)
+    private val binding by lazy { NotificationDialogBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
