@@ -80,5 +80,5 @@ fun Coin.coinName(): String {
 
 fun Double.format(digits: Int = 8): String {
     val leading = toString().substringBefore(".").length
-    return "%.${max(digits - leading, 2)}f".format(this).trimEnd('0').trimEnd('.')
+    return "%.${max(digits - leading, 2)}f".format(this).trimEnd('0').trimEnd(',')
 }
