@@ -9,6 +9,9 @@ class CoinsDiffUtilCallback : DiffUtil.ItemCallback<CoinListItem>() {
     }
 
     override fun areContentsTheSame(oldItem: CoinListItem, newItem: CoinListItem): Boolean {
-        return oldItem.price == newItem.price && oldItem.currency == newItem.currency
+        return oldItem.price == newItem.price &&
+                oldItem.currency == newItem.currency &&
+                oldItem.coinMarket == newItem.coinMarket &&
+                oldItem.areNotificationsEnabled == newItem.areNotificationsEnabled
     }
 }
