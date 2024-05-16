@@ -11,6 +11,7 @@ import com.advancedsolutionsdevelopers.cryptomonitor.presentation.notification.N
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
 class BackgroundSyncWorker @AssistedInject constructor(
@@ -29,7 +30,7 @@ class BackgroundSyncWorker @AssistedInject constructor(
                 val settings = settingsCache.get()
                 if (settings.notificationsEnabled) {
                     val notifications = notificationsCache.get().notifications
-                    val quotes = updateQuotesUseCase.execute(Unit)
+                    val quotes = updateQuotesUseCase.execute(Unit).first()
                     for (i in quotes) {
                         if (i.type in notifications.keys && notifications.getValue(i.type) <= i.price) {
                             notificationCreator.notify(context, i, settings.currency)
