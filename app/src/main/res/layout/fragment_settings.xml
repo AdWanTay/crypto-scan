@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/selectedCurrencyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_selected_currency"
@@ -45,16 +45,6 @@
         app:layout_constraintEnd_toStartOf="@+id/currency_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/currency_spinner" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_selected_time_interval"
-        android:textColor="@color/base_milky"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
         android:id="@+id/drop_settings_button"
