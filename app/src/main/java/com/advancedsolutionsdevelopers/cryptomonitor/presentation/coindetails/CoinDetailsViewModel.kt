@@ -3,6 +3,7 @@ package com.advancedsolutionsdevelopers.cryptomonitor.presentation.coindetails
 import com.advancedsolutionsdevelopers.cryptomonitor.core.BaseViewModel
 import com.advancedsolutionsdevelopers.cryptomonitor.core.StoreConfig
 import com.advancedsolutionsdevelopers.cryptomonitor.core.di.IViewModelFactory
+import com.advancedsolutionsdevelopers.cryptomonitor.domain.repository.QuotesRepository
 import com.advancedsolutionsdevelopers.cryptomonitor.domain.repository.SettingsRepository
 import com.advancedsolutionsdevelopers.cryptomonitor.domain.usecase.BybitQuotesUseCase
 import com.advancedsolutionsdevelopers.cryptomonitor.presentation.activity.NavigationChannel
@@ -13,7 +14,7 @@ import dagger.assisted.AssistedInject
 
 class CoinDetailsViewModel @AssistedInject constructor(
     storeConfig: StoreConfig,
-    private val bybitQuotesUseCase: BybitQuotesUseCase,
+    private val quotesRepository: QuotesRepository,
     private val navigationChannel: NavigationChannel,
 ) : BaseViewModel<CoinDetailsState, CoinDetailsEvent>(storeConfig, CoinDetailsState.Initial) {
 
@@ -34,9 +35,12 @@ class CoinDetailsViewModel @AssistedInject constructor(
                 currentPrice = 0.0,
             )
         }
-        val result = bybitQuotesUseCase.execute(Unit).getOrNull()
-        if (result != null) {
-            for (coin in result) {
+        observeCoinState(coinName)
+    }
+
+    private fun observeCoinState(coinName: String) = intent {
+        quotesRepository.stateFlow.collect { coins ->
+            for (coin in coins) {
                 if (coin.type.name == coinName) {
                     reduce { oldState ->
                         when (oldState) {

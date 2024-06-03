@@ -61,6 +61,10 @@ class UpdateQuotesUseCase @Inject constructor(
                 coinsMinPrices[i.type] = Pair(i.price, BYBIT)
             }
         }
+        val bybitMap = mutableMapOf<Coin,CoinItem>()
+        for (i in bybitQuotes){
+            bybitMap[i.type] = i
+        }
         for (i in huobiQuotes) {
             if (i.type in coinsMinPrices.keys) {
                 if (i.price < coinsMinPrices[i.type]!!.first)
@@ -72,9 +76,12 @@ class UpdateQuotesUseCase @Inject constructor(
 
         return coinsMinPrices.map { coinWithPrice ->
             CoinItem(
-                coinWithPrice.key,
-                coinWithPrice.value.first,
-                coinWithPrice.value.second
+                type = coinWithPrice.key,
+                price = coinWithPrice.value.first,
+                market = coinWithPrice.value.second,
+                minPrice = bybitMap[coinWithPrice.key]?.minPrice?: 0.0,
+                maxPrice = bybitMap[coinWithPrice.key]?.maxPrice?: 0.0,
+                volume = bybitMap[coinWithPrice.key]?.volume?: 0.0,
             )
         }
     }
